@@ -5,7 +5,7 @@ def get_repo(username):
     response = requests.get(f"https://api.github.com/users/{username}/repos")
     if response.status_code != 200:
         print("Invalid User")
-    return False
+        return False
     repos = response.json()
     if not repos:
         print("There are no repositories")
