@@ -9,7 +9,7 @@ def get_repo(username):  # Function that takes GitHub username as input and give
     repos = response.json()
     if not repos:
         print("There are no repositories")
-        return True
+        return False
     for repo in repos:
         commits_url = repo['commits_url'].split("{")[0]
         response = requests.get(commits_url)
@@ -18,9 +18,11 @@ def get_repo(username):  # Function that takes GitHub username as input and give
     return True
 
 
+
 # def get_username():
 #     username = input("Enter user ID from GitHub: ")
 #     get_repo(username)
 #
 #
 # get_username()
+
