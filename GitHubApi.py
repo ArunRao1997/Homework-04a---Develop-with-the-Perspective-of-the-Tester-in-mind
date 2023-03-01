@@ -18,11 +18,5 @@ def get_repo(username):  # Function that takes GitHub username as input and give
     return True
 
 
-
-# def get_username():
-#     username = input("Enter user ID from GitHub: ")
-#     get_repo(username)
-#
-#
-# get_username()
-
+if __name__ == '__main__':
+    get_repo('ArunRao1997')
