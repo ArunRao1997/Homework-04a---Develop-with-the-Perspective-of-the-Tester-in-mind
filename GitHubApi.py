@@ -2,7 +2,7 @@ import requests
 
 
 def get_repo(username):  # Function that takes GitHub username as input and gives number of repos and commits
-    response = requests.get(f"https://api.github.com/users/{username}/repos")
+    response = requests.get(f"https://api.github.com/users/{username}/repos", timeout=60)
     if response.status_code != 200:
         print("Invalid User")
         return False
@@ -12,7 +12,7 @@ def get_repo(username):  # Function that takes GitHub username as input and give
         return False
     for repo in repos:
         commits_url = repo['commits_url'].split("{")[0]
-        response = requests.get(commits_url)
+        response = requests.get(commits_url, timeout=60)
         commits = response.json()
         print(f"Repo: {repo['name']} Number Of Commits: {len(commits)}")
     return True
