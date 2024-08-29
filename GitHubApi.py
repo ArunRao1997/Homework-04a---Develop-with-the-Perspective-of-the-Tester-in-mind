@@ -1,8 +1,8 @@
-import requests
+from security import safe_requests
 
 
 def get_repo(username):  # Function that takes GitHub username as input and gives number of repos and commits
-    response = requests.get(f"https://api.github.com/users/{username}/repos")
+    response = safe_requests.get(f"https://api.github.com/users/{username}/repos")
     if response.status_code != 200:
         print("Invalid User")
         return False
@@ -12,7 +12,7 @@ def get_repo(username):  # Function that takes GitHub username as input and give
         return False
     for repo in repos:
         commits_url = repo['commits_url'].split("{")[0]
-        response = requests.get(commits_url)
+        response = safe_requests.get(commits_url)
         commits = response.json()
         print(f"Repo: {repo['name']} Number Of Commits: {len(commits)}")
     return True
